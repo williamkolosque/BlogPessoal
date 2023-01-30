@@ -8,9 +8,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
+
 @Entity
 @Table(name = "tb_postagens")
 public class Postagem {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
     private Long id;
