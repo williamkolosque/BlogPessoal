@@ -26,14 +26,6 @@ public class PostagemController {
 
     }
 
-    @PostMapping
-    public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
-
-        return ResponseEntity.status(HttpStatus.CREATED).
-                body(postagemRepository.save(postagem));
-
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<Postagem> getById(@PathVariable Long id){
     return postagemRepository.findById(id)
@@ -45,5 +37,20 @@ public class PostagemController {
     public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
         return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
 }
+
+    @PostMapping
+    public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
+
+        return ResponseEntity.status(HttpStatus.CREATED).
+                body(postagemRepository.save(postagem));
+
+    }
+
+    @PutMapping
+    public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem){
+        return postagemRepository.findById(postagem.getId())
+                .map(resposta ->ResponseEntity.status(HttpStatus.OK).body(postagemRepository.save(postagem)))
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 
 }
