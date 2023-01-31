@@ -3,12 +3,11 @@ package com.generation.blogpessoal.controller;
 
 import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +24,15 @@ public class PostagemController {
         return ResponseEntity.ok(postagemRepository.findAll());
 
     }
+
+    @PostMapping
+    public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
+
+        return ResponseEntity.status(HttpStatus.CREATED).
+                body(postagemRepository.save(postagem));
+
+    }
+
+
 
 }
