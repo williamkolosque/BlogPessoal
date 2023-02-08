@@ -3,7 +3,7 @@ package com.generation.blogpessoal.service;
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.model.UsuarioLogin;
 import com.generation.blogpessoal.repository.UsuarioRepository;
-import org.apache.tomcat.util.codec.binary.Base64;
+//import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,7 +14,7 @@ import java.nio.charset.Charset;
 import java.util.Optional;
 
 
-//import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 
 @Service
